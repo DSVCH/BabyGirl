@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>С Днём Рождения, Анастасия!</title>
+  <title>С днём рождения</title>
 
   <style>
     :root{
-      /* Палитра: синие, чёрные, светло-голубые и вишнёвый акцент */
+      /* Palette */
       --bg-dark: #071028;
       --bg-mid: #0b2a4a;
       --accent: #0ea5ff;
@@ -22,9 +22,23 @@
 
     /* Reset */
     * { box-sizing: border-box; }
-    html,body{ height:100%; margin:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      background: linear-gradient(160deg, var(--bg-mid) 0%, #07223a 40%, #031022 100%);
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+
+      background-color: var(--bg-mid);
+      background-image: linear-gradient(180deg,
+        rgba(11,42,74,1) 0%,
+        rgba(7,34,58,1) 40%,
+        rgba(4,22,45,1) 75%,
+        rgba(3,16,34,1) 100%
+      );
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
       color:var(--card);
     }
 
@@ -39,7 +53,7 @@
     .card {
       width:100%;
       max-width:var(--max-width);
-      padding: 140px 30px 38px; /* Место сверху увеличено */
+      padding: 140px 30px 38px;
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
       border-radius: calc(var(--radius) + 6px);
       box-shadow: 0 24px 60px rgba(2,6,23,0.6);
@@ -86,13 +100,13 @@
       border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.03);
       box-shadow: 0 10px 26px rgba(3,10,28,0.45); color:var(--muted);
     }
-    .side .meta { color:var(--muted); font-size:14px; }
-    .side .meta strong { color:#eaf6ff; display:block; margin-top:6px; margin-bottom:6px; font-weight:800; }
+    .side .meta { color:var(--muted); margin-top:6px; margin-bottom:6px; font-size:14px; }
+    .side .meta strong { color:#eaf6ff; font-weight:800; }
 
     /* Balloons */
     .balloon {
       position:absolute;
-      width:46px;
+      width:56px;
       height:64px;
       border-radius:50% 50% 45% 45%;
       transform-origin: center bottom;
@@ -114,7 +128,6 @@
       transform:translateX(-50%);
       border-radius:2px;
     }
-    /* Новые смелее опущенные позиции: положительные top — шары внутри карточки */
     .b1{ left:8%; top:6%; background: linear-gradient(180deg,#0b3d91,#08326b); animation:float 7s ease-in-out infinite; transform:scale(1.02); }
     .b2{ left:26%; top:10%; background: linear-gradient(180deg,#0ea5ff,#61b8ff); animation:float 6.2s ease-in-out infinite; animation-delay:0.6s; transform:scale(1); color:var(--dark); }
     .b3{ right:14%; top:5%; background: linear-gradient(180deg,#081428,#0b1b2e); animation:float 8s ease-in-out infinite; animation-delay:0.3s; transform:scale(1.04); }
@@ -126,12 +139,26 @@
       100% { transform: translateY(0) rotate(-4deg); }
     }
 
-    .confetti { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-    .confetti .piece{ position:absolute; width:10px; height:14px; opacity:0.95; will-change: transform, opacity; transform-origin:center; border-radius:2px; mix-blend-mode:screen; }
+    /* Confetti container */
+    .confetti {
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .confetti .piece{
+      position:absolute;
+      width:10px;
+      height:14px;
+      opacity:0.95;
+      will-change: transform, opacity;
+      transform-origin:center;
+      border-radius:2px;
+      mix-blend-mode:screen;
+    }
 
     .divider { margin: 20px 0 0 0; border: 0; height: 1px; background: rgba(255,255,255,0.04); }
 
-    /* footer positioned at the bottom inside the card, left/right aligned on one baseline */
     .footer {
       position: absolute;
       left: 30px;
@@ -156,7 +183,6 @@
       pointer-events: auto;
     }
 
-    /* Responsive: уменьшено padding-top для маленьких экранов */
     @media (max-width:920px){
       .grid { grid-template-columns:1fr; }
       .side { order: -1; }
@@ -183,7 +209,7 @@
       <div class="balloon b1">A</div>
       <div class="balloon b2">N</div>
       <div class="balloon b3">22</div>
-      <div class="balloon b4">❤</div>
+      <div class="balloon b4">♥</div>
 
       <div class="confetti" id="confetti"></div>
 
@@ -201,7 +227,7 @@
           <p>Спасибо, что ты есть.</p>
 
           <div class="actions" role="group" aria-label="Действия открытки">
-            <button class="btn primary" id="surpriseBtn" title="Показать конфетти">🎉</button>
+            <button class="btn primary" id="surpriseBtn" title="Показать конфетти">Жмай сюда 🎉</button>
           </div>
         </div>
 
@@ -209,6 +235,7 @@
           <div class="meta">
             <div>Родилась: <strong>24.09.2003</strong></div>
             <div>Дожила уже аж до: <strong>22 лет</strong></div>
+            <div>Продолжай в том же духе</div>
           </div>
         </aside>
       </section>
@@ -223,6 +250,7 @@
   </div>
 
   <script>
+    // Confetti generator
     const confettiRoot = document.getElementById('confetti');
     const colors = ['#0ea5ff','#ffd166','#1657b3','#9b163a','#61b8ff','#0b3d91','#e6f7ff'];
 
@@ -238,9 +266,10 @@
       confettiRoot.appendChild(el);
 
       const duration = 1400 + Math.random()*1600;
-      const horizontal = (Math.random()-0.5) * 560;
+      // horizontal drift after falling
+      const horizontal = (Math.random()-0.5) * 400;
       const rotateDelta = (Math.random()-0.5) * 720;
-      const endY = window.innerHeight * (0.7 + Math.random()*0.3);
+      const endY = window.innerHeight * (0.7 + Math.random()*0.35);
 
       const animation = el.animate([
         { transform: `translate3d(0,0,0) rotate(0deg)`, opacity:1 },
@@ -255,22 +284,28 @@
       animation.onfinish = () => el.remove();
     }
 
+    // Burst: spawn pieces from a Y that is above the viewport (negative),
+    // and across the full viewport width so confetti always falls from top.
     function burstConfetti(options = {}) {
-      const count = options.count || 60;
-      const spread = options.spread || window.innerWidth * 0.6;
-      const centerX = window.innerWidth * 0.5;
-      const topOffset = 10 + Math.random() * 80;
-      for (let i=0;i<count;i++){
-        const x = centerX - (spread/2) + Math.random()*spread;
-        const y = topOffset + Math.random()*30;
-        setTimeout(() => makeConfettiPiece(x,y), i * 8);
+      const count = options.count || 80;
+      const startAbove = options.startAbove || 40; // pixels above top (min)
+      const extraAbove = options.extraAbove || 120; // additional random range
+      for (let i = 0; i < count; i++) {
+        // pick an X anywhere across the full viewport width
+        const x = Math.random() * window.innerWidth;
+        // pick a Y slightly above the top of the viewport (negative)
+        const y = - (startAbove + Math.random() * extraAbove);
+        // stagger a bit so pieces don't all appear same frame
+        setTimeout(() => makeConfettiPiece(x, y), i * 8);
       }
     }
 
+    // Hook up button — allow multiple activations
     const surpriseBtn = document.getElementById('surpriseBtn');
-    surpriseBtn.addEventListener('click', () => burstConfetti({count: 80}));
-    window.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'c') burstConfetti({count: 60}); });
+    surpriseBtn.addEventListener('click', () => burstConfetti({count: 100}));
 
+    // Accessibility: press 'c' to trigger confetti
+    window.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'c') burstConfetti({count: 80}); });
     window.addEventListener('resize', () => {});
   </script>
 </body>
