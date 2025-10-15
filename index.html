@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ANSTSHJLVS — Простой сайт</title>
+
+  <style>
+    /* Базовый сброс */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #1f2937; background: #f8fafc; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    img { max-width: 100%; display: block; }
+
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --accent:#0ea5a4;
+      --muted:#6b7280;
+      --radius:12px;
+      --max-width:1100px;
+    }
+
+    .site { min-height:100vh; display:flex; flex-direction:column; align-items:center; }
+    header { width:100%; background:linear-gradient(90deg, rgba(14,165,164,0.06), rgba(99,102,241,0.03)); padding:18px 24px; box-shadow:0 1px 0 rgba(15,23,42,0.03); position:sticky; top:0; z-index:20; }
+    .container { width:100%; max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; gap:16px; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; }
+    .logo { width:44px; height:44px; border-radius:10px; background:linear-gradient(135deg,var(--accent),#6366f1); display:grid; place-items:center; color:white; font-weight:700; font-size:18px; }
+    nav { display:flex; gap:14px; align-items:center; }
+    nav a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:14px; }
+    nav a.cta { background:var(--accent); color:white; }
+
+    .menu-toggle { display:none; background:none; border:0; padding:8px; cursor:pointer; }
+
+    .hero { width:100%; max-width:var(--max-width); margin:36px auto 24px; padding:36px; background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85)); border-radius:var(--radius); box-shadow:0 10px 30px rgba(15,23,42,0.06); display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:center; }
+    .hero h1 { margin:0 0 12px 0; font-size:32px; line-height:1.05; color:#0f172a; }
+    .hero p { margin:0 0 20px 0; color:var(--muted); }
+
+    .controls { display:flex; gap:12px; }
+    .btn { display:inline-block; padding:10px 16px; border-radius:10px; font-weight:700; text-decoration:none; text-align:center; cursor:pointer; border:0; }
+    .btn.primary { background:var(--accent); color:white; }
+    .btn.ghost { background:rgba(15,23,42,0.04); color:var(--muted); }
+
+    .card { background:linear-gradient(180deg,#fff,#fcfeff); padding:18px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); }
+    .stat { display:flex; justify-content:space-between; gap:12px; align-items:center; color:var(--muted); font-weight:600; }
+    .stat .value { color:#0f172a; font-size:20px; font-weight:800; }
+
+    .features { width:100%; max-width:var(--max-width); margin:18px auto 48px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:0 6px; }
+    .feature { background:var(--card); border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(15,23,42,0.04); border:1px solid rgba(15,23,42,0.03); }
+
+    footer { width:100%; padding:28px 24px; border-top:1px solid rgba(15,23,42,0.03); }
+    .footer-inner { max-width:var(--max-width); margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--muted); font-size:14px; }
+
+    @media (max-width:920px) { .hero { grid-template-columns:1fr; } .features { grid-template-columns:repeat(2,1fr); } nav{display:none;} .menu-toggle{display:block;} }
+    @media (max-width:640px) { .features{grid-template-columns:1fr;} .brand .text{display:none;} .hero{padding:22px;} .container{padding:0 6px;} }
+    .muted { color:var(--muted); font-size:14px; }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="container">
+        <a class="brand" href="#">
+          <div class="logo">AN</div>
+          <div class="text">
+            <div style="font-weight:800;">ANSTSHJLVS</div>
+            <div class="muted" style="font-size:12px;">Личный проект</div>
+          </div>
+        </a>
+
+        <nav aria-label="Главная навигация">
+          <a href="#features">Фичи</a>
+          <a href="#about">О проекте</a>
+          <a href="#contact" class="cta">Связаться</a>
+        </nav>
+
+        <button class="menu-toggle" aria-label="Открыть меню" onclick="toggleNav()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M4 6h16M4 12h16M4 18h16" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main style="width:100%; padding: 0 12px 36px;">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">Простой, аккуратный и адаптивный шаблон сайта</h1>
+          <p>Этот файл — стартовая точка. Здесь встроены стили, адаптивная сетка и небольшие компоненты, которые можно расширять.</p>
+
+          <div class="controls" role="group" aria-label="Действия">
+            <a class="btn primary" href="#contact">Начать</a>
+            <a class="btn ghost" href="#about">Узнать больше</a>
+          </div>
+
+          <p style="margin-top:18px;" class="muted">Подходит для презентации проекта, лендинга или портфолио. Легко кастомизируется.</p>
+        </div>
+
+        <aside class="card" aria-labelledby="card-title">
+          <h3 id="card-title">Коротко</h3>
+          <div style="margin: 14px 0;">
+            <div class="stat"><div class="muted">Время разработки</div><div class="value">~1 час</div></div>
+            <div class="stat" style="margin-top:8px;"><div class="muted">Адаптивность</div><div class="value">Мобильная + десктоп</div></div>
+          </div>
+          <p class="muted" style="margin:0;">Хотите, могу добавить больше страниц, форму обратной связи или интеграцию с бекендом.</p>
+        </aside>
+      </section>
+
+      <section id="features" class="features" aria-label="Особенности">
+        <article class="feature">
+          <h4>Адаптивный дизайн</h4>
+          <p>Работает на мобильных, планшетах и больших экранах — благодаря гибкой сетке и медиа-запросам.</p>
+        </article>
+
+        <article class="feature">
+          <h4>Встроенные стили</h4>
+          <p>Все стили находятся в одном файле — удобно для быстрой правки и прототипирования.</p>
+        </article>
+
+        <article class="feature">
+          <h4>Чистая типографика</h4>
+          <p>Нейтральные цвета и читаемые размеры шрифтов, которые легко менять через :root переменные.</p>
+        </article>
+      </section>
+
+      <section id="about" style="max-width:var(--max-width); margin: 0 auto 40px; padding: 0 6px;">
+        <div style="background:var(--card); border-radius:12px; padding:20px; box-shadow: 0 6px 18px rgba(15,23,42,0.04); border:1px solid rgba(15,23,42,0.03);">
+          <h3>О проекте</h3>
+          <p class="muted">Это стартовый шаблон, который можно использовать как основу для сайта любой сложности. Я могу помочь добавить страницы, роутинг, обработку форм или подключить систему сборки (Webpack, Vite).</p>
+        </div>
+      </section>
+
+      <section id="contact" style="max-width:var(--max-width); margin: 0 auto 72px; padding: 0 6px;">
+        <div style="display:grid; gap:12px; grid-template-columns: 1fr 320px;">
+          <div style="background:var(--card); padding:18px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); box-shadow: 0 6px 18px rgba(15,23,42,0.04);">
+            <h3>Связаться</h3>
+            <p class="muted">Оставьте сообщение — я отвечу. (Форма отправки не подключена в этом шаблоне.)</p>
+            <form onsubmit="event.preventDefault(); alert('Спасибо! (форма не подключена)')">
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+                <input required type="text" name="name" placeholder="Ваше имя" style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);" />
+                <input required type="email" name="email" placeholder="Email" style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);" />
+                <textarea name="message" rows="5" placeholder="Сообщение" style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);"></textarea>
+                <button class="btn primary" type="submit">Отправить</button>
+              </div>
+            </form>
+          </div>
+
+          <div style="align-self:start; display:flex; gap:12px; flex-direction:column;">
+            <div style="background:linear-gradient(180deg,#fff,#fcfeff); padding:16px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); box-shadow: 0 6px 18px rgba(15,23,42,0.04);">
+              <h4 style="margin:0 0 8px 0;">Контакты</h4>
+              <p class="muted" style="margin:0;">Email: <strong style="color:#0f172a">hello@example.com</strong></p>
+              <p class="muted" style="margin:6px 0 0 0;">Телефон: <strong style="color:#0f172a">+7 (900) 000-00-00</strong></p>
+            </div>
+
+            <div style="background:linear-gradient(180deg,#fff,#fcfeff); padding:14px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); box-shadow: 0 6px 18px rgba(15,23,42,0.04);">
+              <h4 style="margin:0 0 8px 0;">Готовы начать?</h4>
+              <p class="muted" style="margin:0 0 10px 0;">Могу добавить backend, CMS или статический генератор.</p>
+              <a class="btn primary" href="#contact">Написать</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© <strong>ANSTSHJLVS</strong> — 2025</div>
+        <div class="muted">Сделано с ♥ — адаптивный шаблон</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleNav(){
+      const nav = document.querySelector('nav');
+      if(!nav) return;
+      if (nav.style.display === 'flex') nav.style.display = '';
+      else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.right = '24px';
+        nav.style.top = '68px';
+        nav.style.background = 'white';
+        nav.style.padding = '8px';
+        nav.style.borderRadius = '10px';
+        nav.style.boxShadow = '0 8px 30px rgba(2,6,23,0.08)';
+      }
+    }
+  </script>
+</body>
+</html>
