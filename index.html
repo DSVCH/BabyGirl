@@ -26,11 +26,11 @@
     /* Reset */
     * { box-sizing: border-box; }
     html,body{
-      height:100%;
-      margin:0;
+      height: 100%;
+      margin: 0;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
 
       background-color: var(--bg-mid);
       background-image: linear-gradient(180deg,
@@ -41,59 +41,59 @@
       );
       background-repeat: no-repeat;
       background-attachment: fixed;
-      background-size: cover;
-      color:var(--card);
+      background-size: 200vh;
+      color: var(--card);
     }
 
     .wrap {
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:40px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
     }
 
     .card {
-      width:100%;
-      max-width:var(--max-width);
+      width: 100%;
+      max-width: var(--max-width);
       padding: 140px 30px 38px;
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
       border-radius: calc(var(--radius) + 6px);
       box-shadow: 0 24px 60px rgba(2,6,23,0.6);
-      position:relative;
-      overflow:hidden;
+      position: relative;
+      overflow: hidden;
       border: 1px solid rgba(255,255,255,0.03);
     }
 
-    .header { display:flex; align-items:center; gap:18px; }
+    .header { display: flex; align-items: center; gap: 18px; }
     .logo {
-      min-width:84px; height:84px; border-radius:18px;
+      min-width: 84px; height: 84px; border-radius: 18px;
       background: linear-gradient(135deg, var(--primary), var(--bg-dark));
-      display:grid; place-items:center; color:var(--accent);
-      font-weight:900; font-size:26px;
+      display: grid; place-items: center; color:var(--accent);
+      font-weight: 900; font-size: 26px;
       box-shadow: 0 10px 30px rgba(4,18,54,0.6);
       border: 2px solid rgba(255,255,255,0.04);
     }
-    .header h1 { margin:0; font-size:28px; line-height:1.05; color: #eaf6ff; }
+    .header h1 { margin: 0; font-size: 28px; line-height: 1.05; color: #eaf6ff; }
 
     .grid {
-      display:grid;
+      display: grid;
       grid-template-columns: 1fr 360px;
-      gap:24px;
-      margin-top:22px;
-      align-items:start;
+      gap: 24px;
+      margin-top: 22px;
+      align-items: start;
     }
 
-    .message { padding:10px 6px; }
-    .message p { margin:0 0 10px 0; color:#dbeefc; font-size:16px; }
-    .message .big { font-size:20px; font-weight:700; color:#ffffff; margin-bottom:14px; }
+    .message { padding: 10px 6px; }
+    .message p { margin: 0 0 10px 0; color: #dbeefc; font-size: 16px; }
+    .message .big { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 14px; }
 
-    .actions { display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+    .actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
 
     .btn {
-      display:inline-flex; gap:10px; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:12px; cursor:pointer; border:0;
-      font-weight:700; color: var(--card);
+      display: inline-flex; gap: 10px; align-items: center; justify-content: center;
+      padding: 10px 14px; border-radius: 12px; cursor: pointer; border: 0;
+      font-weight: 700; color: var(--card);
       transition: transform .14s ease, box-shadow .14s ease, background .14s ease, opacity .14s ease;
       user-select: none;
     }
@@ -127,41 +127,41 @@
 
     .side {
       background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-      border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 10px 26px rgba(3,10,28,0.45); color:var(--muted);
+      border-radius: 14px; padding: 16px; border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 26px rgba(3,10,28,0.45); color: var(--muted);
     }
-    .side .meta { color:var(--muted); margin-top:6px; margin-bottom:6px; font-size:14px; }
-    .side .meta strong { color:#eaf6ff; font-weight:800; }
+    .side .meta { color: var(--muted); margin-top: 6px; margin-bottom: 6px; font-size: 14px; }
+    .side .meta strong { color: #eaf6ff; font-weight: 800; }
 
     /* Balloons */
     .balloon {
-      position:absolute;
-      width:56px;
-      height:64px;
-      border-radius:50% 50% 45% 45%;
+      position: absolute;
+      width: 56px;
+      height: 64px;
+      border-radius: 50% 50% 45% 45%;
       transform-origin: center bottom;
-      opacity:0.95;
-      display:grid;
-      place-items:center;
-      color:white;
-      font-weight:800;
+      opacity: 0.95;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
       box-shadow: 0 8px 20px rgba(2,6,23,0.4);
     }
     .balloon::after{
       content:'';
       position:absolute;
-      left:50%;
+      left: 50%;
       bottom:-36px;
-      width:2px;
-      height:36px;
+      width: 2px;
+      height: 36px;
       background: rgba(255,255,255,0.03);
-      transform:translateX(-50%);
-      border-radius:2px;
+      transform: translateX(-50%);
+      border-radius: 2px;
     }
-    .b1{ left:8%; top:6%; background: linear-gradient(180deg,#0b3d91,#08326b); animation:float 7s ease-in-out infinite; transform:scale(1.02); }
-    .b2{ left:26%; top:10%; background: linear-gradient(180deg,#0ea5ff,#61b8ff); animation:float 6.2s ease-in-out infinite; animation-delay:0.6s; transform:scale(1); color:var(--dark); }
-    .b3{ right:14%; top:5%; background: linear-gradient(180deg,#081428,#0b1b2e); animation:float 8s ease-in-out infinite; animation-delay:0.3s; transform:scale(1.04); }
-    .b4{ right:26%; top:9%; background: linear-gradient(180deg,#9b163a,#6b0f2a); animation:float 6.6s ease-in-out infinite; animation-delay:0.9s; transform:scale(0.98); }
+    .b1{ left: 8%; top: 6%; background: linear-gradient(180deg,#0b3d91,#08326b); animation: float 7s ease-in-out infinite; transform: scale(1.02); }
+    .b2{ left: 26%; top: 10%; background: linear-gradient(180deg,#0ea5ff,#61b8ff); animation: float 6.2s ease-in-out infinite; animation-delay: 0.6s; transform: scale(1); color: var(--dark); }
+    .b3{ right: 14%; top: 5%; background: linear-gradient(180deg,#081428,#0b1b2e); animation: float 8s ease-in-out infinite; animation-delay: 0.3s; transform: scale(1.04); }
+    .b4{ right: 26%; top: 9%; background: linear-gradient(180deg,#9b163a,#6b0f2a); animation: float 6.6s ease-in-out infinite; animation-delay: 0.9s; transform: scale(0.98); }
 
     @keyframes float {
       0% { transform: translateY(0) rotate(-4deg); }
@@ -171,20 +171,20 @@
 
     /* Confetti container */
     .confetti {
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      overflow:hidden;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
     .confetti .piece{
-      position:absolute;
-      width:10px;
-      height:14px;
-      opacity:0.95;
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      opacity: 0.95;
       will-change: transform, opacity;
-      transform-origin:center;
-      border-radius:2px;
-      mix-blend-mode:screen;
+      transform-origin: center;
+      border-radius: 2px;
+      mix-blend-mode: screen;
     }
 
     .divider { margin: 20px 0 0 0; border: 0; height: 1px; background: rgba(255,255,255,0.04); }
@@ -195,39 +195,39 @@
       right: 30px;
       bottom: 12px;
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      color:var(--muted);
-      font-size:14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
       pointer-events: none;
       white-space: nowrap;
     }
     .footer .item {
-      color:var(--muted);
-      font-weight:600;
-      font-size:14px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       pointer-events: auto;
     }
 
-    @media (max-width:920px){
-      .grid { grid-template-columns:1fr; }
+    @media (max-width: 920px){
+      .grid { grid-template-columns: 1fr; }
       .side { order: -1; }
       .card { padding-top: 90px; padding-bottom: 36px; }
-      .b1{ top:4%; left:6%; transform:scale(0.95); }
-      .b2{ top:6%; left:20%; transform:scale(0.92); }
-      .b3{ top:4%; right:10%; transform:scale(0.95); }
-      .b4{ top:7%; right:20%; transform:scale(0.92); }
-      .balloon { width:40px; height:56px; }
+      .b1{ top:4%; left:6%; transform: scale(0.95); }
+      .b2{ top:6%; left:20%; transform: scale(0.92); }
+      .b3{ top:4%; right:10%; transform: scale(0.95); }
+      .b4{ top:7%; right:20%; transform: scale(0.92); }
+      .balloon { width: 40px; height: 56px; }
       .footer {
         position: static;
         width: 100%;
         margin-top: 12px;
-        flex-direction:row;
-        justify-content:space-between;
+        flex-direction: row;
+        justify-content: space-between;
         pointer-events: auto;
       }
     }
@@ -235,7 +235,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="card" role="main" aria-label="Пожелание для Анастасии">
+    <div class="card" role="main" aria-label="Пожелания">
       <div class="balloon b1">A</div>
       <div class="balloon b2">N</div>
       <div class="balloon b3">22</div>
@@ -256,7 +256,7 @@
           <p>Желаю тебе успехов в карьере и хорошего настроения почаще</p>
           <p>Спасибо, что ты есть.</p>
 
-          <div class="actions" role="group" aria-label="Действия открытки">
+          <div class="actions" role="group" aria-label="Действия">
             <button class="btn primary" id="surpriseBtn" title="Показать конфетти">Жмай сюда 🎉</button>
           </div>
         </div>
