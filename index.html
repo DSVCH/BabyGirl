@@ -12,6 +12,9 @@
       --bg-mid: #0b2a4a;
       --accent: #0ea5ff;
       --primary: #08326b;
+      --primary-2: #1657b3;
+      --primary-pressed-1: #072a50;
+      --primary-pressed-2: #0a3780;
       --dark: #0b1220;
       --cherry: #9b163a;
       --card: #ffffff;
@@ -91,8 +94,35 @@
       display:inline-flex; gap:10px; align-items:center; justify-content:center;
       padding:10px 14px; border-radius:12px; cursor:pointer; border:0;
       font-weight:700; color: var(--card);
+      transition: transform .14s ease, box-shadow .14s ease, background .14s ease, opacity .14s ease;
+      user-select: none;
     }
-    .btn.primary { background: linear-gradient(90deg, var(--primary), #1657b3); box-shadow:0 10px 28px rgba(8,50,107,0.18); }
+
+    /* Primary button visual + hover/active/focus states */
+    .btn.primary {
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 28px rgba(8,50,107,0.18);
+      transform: translateY(0) scale(1);
+    }
+    .btn.primary:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(8,50,107,0.22);
+    }
+    /* Focus-visible for keyboard users */
+    .btn.primary:focus-visible {
+      outline: none;
+      box-shadow: 0 16px 40px rgba(8,50,107,0.22), 0 0 0 4px rgba(14,165,255,0.12);
+    }
+    /* Pressed state (pseudo-class and JS toggled .pressed) */
+    .btn.primary:active,
+    .btn.primary.pressed {
+      transform: translateY(2px) scale(0.998);
+      /* darker gradient for pressed look */
+      background: linear-gradient(90deg, var(--primary-pressed-1), var(--primary-pressed-2));
+      /* inner shadow + smaller outer shadow */
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.18), 0 6px 14px rgba(3,10,28,0.12);
+    }
+
     .btn.ghost { background:transparent; color:var(--muted); border: 1px solid rgba(255,255,255,0.04); }
 
     .side {
@@ -233,9 +263,9 @@
 
         <aside class="side" aria-label="Информация">
           <div class="meta">
-            <div>Родилась: <strong>24.09.2003</strong></div>
+            <div>Родилась: <strong>24.10.2003</strong></div>
             <div>Дожила уже аж до: <strong>22 лет</strong></div>
-            <div>Продолжай в том же духе</div>
+            <div>Продолжай в том же духе!</div>
           </div>
         </aside>
       </section>
@@ -284,18 +314,13 @@
       animation.onfinish = () => el.remove();
     }
 
-    // Burst: spawn pieces from a Y that is above the viewport (negative),
-    // and across the full viewport width so confetti always falls from top.
     function burstConfetti(options = {}) {
       const count = options.count || 80;
-      const startAbove = options.startAbove || 40; // pixels above top (min)
-      const extraAbove = options.extraAbove || 120; // additional random range
+      const startAbove = options.startAbove || 40;
+      const extraAbove = options.extraAbove || 120;
       for (let i = 0; i < count; i++) {
-        // pick an X anywhere across the full viewport width
         const x = Math.random() * window.innerWidth;
-        // pick a Y slightly above the top of the viewport (negative)
         const y = - (startAbove + Math.random() * extraAbove);
-        // stagger a bit so pieces don't all appear same frame
         setTimeout(() => makeConfettiPiece(x, y), i * 8);
       }
     }
@@ -303,6 +328,18 @@
     // Hook up button — allow multiple activations
     const surpriseBtn = document.getElementById('surpriseBtn');
     surpriseBtn.addEventListener('click', () => burstConfetti({count: 100}));
+
+    // Add pointer handlers to toggle pressed visual state for touch/mouse
+    surpriseBtn.addEventListener('pointerdown', (e) => {
+      // only left button / primary touch
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      surpriseBtn.classList.add('pressed');
+    });
+    // remove pressed on pointerup/pointercancel/leave
+    const clearPress = () => surpriseBtn.classList.remove('pressed');
+    window.addEventListener('pointerup', clearPress);
+    surpriseBtn.addEventListener('pointercancel', clearPress);
+    surpriseBtn.addEventListener('pointerleave', clearPress);
 
     // Accessibility: press 'c' to trigger confetti
     window.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'c') burstConfetti({count: 80}); });
