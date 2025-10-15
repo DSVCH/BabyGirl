@@ -3,336 +3,275 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ANSTSHJLVS — Простой сайт</title>
+  <title>С Днём Рождения, Анастасия!</title>
 
   <style>
-    /* Базовый сброс */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #1f2937; background: #f8fafc; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-    img { max-width: 100%; display: block; }
-
     :root{
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --accent:#0ea5a4; /* teal-500 */
-      --muted:#6b7280;
-      --radius:12px;
-      --max-width:1100px;
+      /* Палитра: синие, чёрные, светло-голубые и вишнёвый акцент */
+      --bg-dark: #071028;
+      --bg-mid: #0b2a4a;
+      --accent: #0ea5ff;
+      --primary: #08326b;
+      --dark: #0b1220;
+      --cherry: #9b163a;
+      --card: #ffffff;
+      --muted: #9aa6b2;
+      --radius: 18px;
+      --max-width: 980px;
     }
 
-    /* Обёртка */
-    .site {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* Reset */
+    * { box-sizing: border-box; }
+    html,body{ height:100%; margin:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      background: linear-gradient(160deg, var(--bg-mid) 0%, #07223a 40%, #031022 100%);
+      color:var(--card);
     }
 
-    header {
-      width: 100%;
-      background: linear-gradient(90deg, rgba(14,165,164,0.06), rgba(99,102,241,0.03));
-      padding: 18px 24px;
-      box-shadow: 0 1px 0 rgba(15,23,42,0.03);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(4px);
-    }
-
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: linear-gradient(135deg,var(--accent),#6366f1);
-      display: grid;
-      place-items: center;
-      color: white;
-      font-weight: 700;
-      font-size: 18px;
-      box-shadow: 0 6px 18px rgba(99,102,241,0.12);
-    }
-
-    nav {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    nav a.cta {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 6px 18px rgba(14,165,164,0.12);
-    }
-
-    /* Toggle (mobile) */
-    .menu-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
-
-    /* Hero */
-    .hero {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 36px auto 24px;
-      padding: 36px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
-      border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(15,23,42,0.06);
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      margin: 0 0 12px 0;
-      font-size: 32px;
-      line-height: 1.05;
-      color: #0f172a;
-    }
-
-    .hero p {
-      margin: 0 0 20px 0;
-      color: var(--muted);
-    }
-
-    .controls { display:flex; gap:12px; }
-    .btn {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: 700;
-      text-decoration: none;
-      text-align: center;
-      cursor: pointer;
-      border: 0;
-    }
-    .btn.primary { background: var(--accent); color: white; box-shadow: 0 8px 22px rgba(14,165,164,0.12); }
-    .btn.ghost { background: rgba(15,23,42,0.04); color: var(--muted); }
-
-    /* Card on the right */
-    .card {
-      background: linear-gradient(180deg,#fff,#fcfeff);
-      padding: 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(15,23,42,0.03);
-    }
-    .card h3 { margin: 0 0 8px 0; font-size: 16px; }
-    .stat { display:flex; justify-content:space-between; gap:12px; align-items:center; color:var(--muted); font-weight:600; }
-    .stat .value { color: #0f172a; font-size:20px; font-weight:800; }
-
-    /* Features */
-    .features {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 18px auto 48px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding: 0 6px;
-    }
-    .feature {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: 0 6px 18px rgba(15,23,42,0.04);
-      border: 1px solid rgba(15,23,42,0.03);
-    }
-    .feature h4 { margin: 0 0 8px 0; }
-    .feature p { margin: 0; color: var(--muted); }
-
-    footer {
-      width: 100%;
-      padding: 28px 24px;
-      border-top: 1px solid rgba(15,23,42,0.03);
-      background: transparent;
-    }
-    .footer-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
+    .wrap {
+      min-height:100vh;
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
+      justify-content:center;
+      padding:40px 20px;
     }
 
-    /* Responsive */
-    @media (max-width: 920px) {
-      .hero { grid-template-columns: 1fr; }
-      .features { grid-template-columns: repeat(2, 1fr); }
-      nav { display: none; }
-      .menu-toggle { display: block; }
+    .card {
+      width:100%;
+      max-width:var(--max-width);
+      padding: 140px 30px 38px; /* Место сверху увеличено */
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: 0 24px 60px rgba(2,6,23,0.6);
+      position:relative;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
-    @media (max-width: 640px) {
-      .features { grid-template-columns: 1fr; }
-      .brand .text { display:none; }
-      .hero { padding: 22px; }
-      .container { padding: 0 6px; }
+    .header { display:flex; align-items:center; gap:18px; }
+    .logo {
+      width:84px; height:84px; border-radius:18px;
+      background: linear-gradient(135deg, var(--primary), var(--bg-dark));
+      display:grid; place-items:center; color:var(--accent);
+      font-weight:900; font-size:26px;
+      box-shadow: 0 10px 30px rgba(4,18,54,0.6);
+      border: 2px solid rgba(255,255,255,0.04);
+    }
+    .header h1 { margin:0; font-size:28px; line-height:1.05; color: #eaf6ff; }
+
+    .grid {
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      margin-top:22px;
+      align-items:start;
     }
 
-    /* Small helper */
-    .muted { color:var(--muted); font-size:14px; }
+    .message { padding:10px 6px; }
+    .message p { margin:0 0 14px 0; color:#dbeefc; font-size:16px; }
+    .message .big { font-size:20px; font-weight:700; color:#ffffff; margin-bottom:10px; }
+
+    .actions { display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; }
+
+    .btn {
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:12px; cursor:pointer; border:0;
+      font-weight:700; color: var(--card);
+    }
+    .btn.primary { background: linear-gradient(90deg, var(--primary), #1657b3); box-shadow:0 10px 28px rgba(8,50,107,0.18); }
+    .btn.ghost { background:transparent; color:var(--muted); border: 1px solid rgba(255,255,255,0.04); }
+
+    .side {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+      border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 26px rgba(3,10,28,0.45); color:var(--muted);
+    }
+    .side .meta { color:var(--muted); font-size:14px; }
+    .side .meta strong { color:#eaf6ff; display:block; margin-top:6px; margin-bottom:6px; font-weight:800; }
+
+    /* Balloons */
+    .balloon {
+      position:absolute;
+      width:46px;
+      height:64px;
+      border-radius:50% 50% 45% 45%;
+      transform-origin: center bottom;
+      opacity:0.95;
+      display:grid;
+      place-items:center;
+      color:white;
+      font-weight:800;
+      box-shadow: 0 8px 20px rgba(2,6,23,0.4);
+    }
+    .balloon::after{
+      content:'';
+      position:absolute;
+      left:50%;
+      bottom:-18px;
+      width:2px;
+      height:36px;
+      background: rgba(255,255,255,0.03);
+      transform:translateX(-50%);
+      border-radius:2px;
+    }
+    /* Новые смелее опущенные позиции: положительные top — шары внутри карточки */
+    .b1{ left:8%; top:6%; background: linear-gradient(180deg,#0b3d91,#08326b); animation:float 7s ease-in-out infinite; transform:scale(1.02); }
+    .b2{ left:26%; top:10%; background: linear-gradient(180deg,#0ea5ff,#61b8ff); animation:float 6.2s ease-in-out infinite; animation-delay:0.6s; transform:scale(1); color:var(--dark); }
+    .b3{ right:14%; top:5%; background: linear-gradient(180deg,#081428,#0b1b2e); animation:float 8s ease-in-out infinite; animation-delay:0.3s; transform:scale(1.04); }
+    .b4{ right:26%; top:9%; background: linear-gradient(180deg,#9b163a,#6b0f2a); animation:float 6.6s ease-in-out infinite; animation-delay:0.9s; transform:scale(0.98); }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(14px) rotate(4deg); }
+      100% { transform: translateY(0) rotate(-4deg); }
+    }
+
+    .confetti { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+    .confetti .piece{ position:absolute; width:10px; height:14px; opacity:0.95; will-change: transform, opacity; transform-origin:center; border-radius:2px; mix-blend-mode:screen; }
+
+    .divider { margin: 20px 0 0 0; border: 0; height: 1px; background: rgba(255,255,255,0.04); }
+
+    /* footer positioned at the bottom inside the card, left/right aligned on one baseline */
+    .footer {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      bottom: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color:var(--muted);
+      font-size:14px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .footer .item {
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      pointer-events: auto;
+    }
+
+    /* Responsive: уменьшено padding-top для маленьких экранов */
+    @media (max-width:920px){
+      .grid { grid-template-columns:1fr; }
+      .side { order: -1; }
+      .card { padding-top: 90px; padding-bottom: 36px; }
+      .b1{ top:4%; left:6%; transform:scale(0.95); }
+      .b2{ top:6%; left:20%; transform:scale(0.92); }
+      .b3{ top:4%; right:10%; transform:scale(0.95); }
+      .b4{ top:7%; right:20%; transform:scale(0.92); }
+      .balloon { width:40px; height:56px; }
+      .footer {
+        position: static;
+        width: 100%;
+        margin-top: 12px;
+        flex-direction:row;
+        justify-content:space-between;
+        pointer-events: auto;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="site">
-    <header>
-      <div class="container">
-        <a class="brand" href="#">
-          <div class="logo">AN</div>
-          <div class="text">
-            <div style="font-weight:800;">ANSTSHJLVS</div>
-            <div class="muted" style="font-size:12px;">Личный проект</div>
-          </div>
-        </a>
+  <div class="wrap">
+    <div class="card" role="main" aria-label="Пожелание для Анастасии">
+      <div class="balloon b1">A</div>
+      <div class="balloon b2">N</div>
+      <div class="balloon b3">22</div>
+      <div class="balloon b4">❤</div>
 
-        <nav aria-label="Главная навигация">
-          <a href="#features">Фичи</a>
-          <a href="#about">О проекте</a>
-          <a href="#contact" class="cta">Связаться</a>
-        </nav>
+      <div class="confetti" id="confetti"></div>
 
-        <button class="menu-toggle" aria-label="Открыть меню" onclick="toggleNav()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M4 6h16M4 12h16M4 18h16" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-    </header>
-
-    <main style="width:100%; padding: 0 12px 36px;">
-      <section class="hero" aria-labelledby="hero-title">
+      <header class="header">
+        <div class="logo">🎂</div>
         <div>
-          <h1 id="hero-title">Простой, аккуратный и адаптивный шаблон сайта</h1>
-          <p>Этот файл — стартовая точка. Здесь встроены стили, адаптивная сетка и небольшие компоненты, которые можно расширять.</p>
+          <h1>С днём рождения, милая</h1>
+        </div>
+      </header>
 
-          <div class="controls" role="group" aria-label="Действия">
-            <a class="btn primary" href="#contact">Начать</a>
-            <a class="btn ghost" href="#about">Узнать больше</a>
+      <section class="grid">
+        <div class="message">
+          <div class="big">Дорогая Настя</div>
+          <p>Желаю тебе успехов в карьере и хорошего настроения почаще</p>
+          <p>Спасибо, что ты есть.</p>
+
+          <div class="actions" role="group" aria-label="Действия открытки">
+            <button class="btn primary" id="surpriseBtn" title="Показать конфетти">🎉</button>
           </div>
-
-          <p style="margin-top:18px;" class="muted">Подходит для презентации проекта, лендинга или портфолио. Легко кастомизируется.</p>
         </div>
 
-        <aside class="card" aria-labelledby="card-title">
-          <h3 id="card-title">Коротко</h3>
-          <div style="margin: 14px 0;">
-            <div class="stat"><div class="muted">Время разработки</div><div class="value">~1 час</div></div>
-            <div class="stat" style="margin-top:8px;"><div class="muted">Адаптивность</div><div class="value">Мобильная + десктоп</div></div>
+        <aside class="side" aria-label="Информация">
+          <div class="meta">
+            <div>Родилась: <strong>24.09.2003</strong></div>
+            <div>Дожила уже аж до: <strong>22 лет</strong></div>
           </div>
-          <p class="muted" style="margin:0;">Хотите, могу добавить больше страниц, форму обратной связи или интеграцию с бекендом.</p>
         </aside>
       </section>
 
-      <section id="features" class="features" aria-label="Особенности">
-        <article class="feature">
-          <h4>Адаптивный дизайн</h4>
-          <p>Работает на мобильных, планшетах и больших экранах — благодаря гибкой сетке и медиа-запросам.</p>
-        </article>
+      <hr class="divider" aria-hidden="true">
 
-        <article class="feature">
-          <h4>Встроенные стили</h4>
-          <p>Все стили находятся в одном файле — удобно для быстрой правки и прототипирования.</p>
-        </article>
-
-        <article class="feature">
-          <h4>Чистая типографика</h4>
-          <p>Нейтральные цвета и читаемые размеры шрифтов, которые легко менять через :root переменные.</p>
-        </article>
-      </section>
-
-      <section id="about" style="max-width:var(--max-width); margin: 0 auto 40px; padding: 0 6px;">
-        <div style="background:var(--card); border-radius:12px; padding:20px; box-shadow: 0 6px 18px rgba(15,23,42,0.04); border:1px solid rgba(15,23,42,0.03);">
-          <h3>О проекте</h3>
-          <p class="muted">Это стартовый шаблон, который можно использовать как основу для сайта любой сложности. Я могу помочь добавить страницы, роутинг, обработку форм или подключить систему сборки (Webpack, Vite).</p>
-        </div>
-      </section>
-
-      <section id="contact" style="max-width:var(--max-width); margin: 0 auto 72px; padding: 0 6px;">
-        <div style="display:grid; gap:12px; grid-template-columns: 1fr 320px;">
-          <div style="background:var(--card); padding:18px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); box-shadow: 0 6px 18px rgba(15,23,42,0.04);">
-            <h3>Связаться</h3>
-            <p class="muted">Оставьте сообщение — я отвечу. (Форма отправки не подключена в этом шаблоне.)</p>
-            <form onsubmit="event.preventDefault(); alert('Спасибо! (форма не подключена)')">
-              <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
-                <input required type="text" name="name" placeholder="Ваше имя" style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);" />
-                <input required type="email" name="email" placeholder="Email" style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);" />
-                <textarea name="message" rows="5" placeholder="Сообщение" style="padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);"></textarea>
-                <button class="btn primary" type="submit">Отправить</button>
-              </div>
-            </form>
-          </div>
-
-          <div style="align-self:start; display:flex; gap:12px; flex-direction:column;">
-            <div style="background:linear-gradient(180deg,#fff,#fcfeff); padding:16px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); box-shadow: 0 6px 18px rgba(15,23,42,0.04);">
-              <h4 style="margin:0 0 8px 0;">Контакты</h4>
-              <p class="muted" style="margin:0;">Email: <strong style="color:#0f172a">hello@example.com</strong></p>
-              <p class="muted" style="margin:6px 0 0 0;">Телефон: <strong style="color:#0f172a">+7 (900) 000-00-00</strong></p>
-            </div>
-
-            <div style="background:linear-gradient(180deg,#fff,#fcfeff); padding:14px; border-radius:12px; border:1px solid rgba(15,23,42,0.03); box-shadow: 0 6px 18px rgba(15,23,42,0.04);">
-              <h4 style="margin:0 0 8px 0;">Готовы начать?</h4>
-              <p class="muted" style="margin:0 0 10px 0;">Могу добавить backend, CMS или статический генератор.</p>
-              <a class="btn primary" href="#contact">Написать</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-inner">
-        <div>© <strong>ANSTSHJLVS</strong> — 2025</div>
-        <div class="muted">Сделано с ♥ — адаптивный шаблон</div>
-      </div>
-    </footer>
+      <footer class="footer" role="contentinfo" aria-label="Подпись">
+        <div class="item">Затрачено: <strong>0.00 ₽</strong></div>
+        <div class="item">Сделано с ♥</div>
+      </footer>
+    </div>
   </div>
 
   <script>
-    // Простое открытие навигации на мобильных экранах
-    function toggleNav(){
-      const nav = document.querySelector('nav');
-      if(!nav) return;
-      if (nav.style.display === 'flex') {
-        nav.style.display = '';
-      } else {
-        nav.style.display = 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.right = '24px';
-        nav.style.top = '68px';
-        nav.style.background = 'white';
-        nav.style.padding = '8px';
-        nav.style.borderRadius = '10px';
-        nav.style.boxShadow = '0 8px 30px rgba(2,6,23,0.08)';
+    const confettiRoot = document.getElementById('confetti');
+    const colors = ['#0ea5ff','#ffd166','#1657b3','#9b163a','#61b8ff','#0b3d91','#e6f7ff'];
+
+    function makeConfettiPiece(x, y) {
+      const el = document.createElement('div');
+      el.className = 'piece';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.style.background = colors[Math.floor(Math.random()*colors.length)];
+      el.style.width = (7 + Math.random()*10) + 'px';
+      el.style.height = (8 + Math.random()*14) + 'px';
+      el.style.transform = 'rotate(' + (Math.random()*360) + 'deg)';
+      confettiRoot.appendChild(el);
+
+      const duration = 1400 + Math.random()*1600;
+      const horizontal = (Math.random()-0.5) * 560;
+      const rotateDelta = (Math.random()-0.5) * 720;
+      const endY = window.innerHeight * (0.7 + Math.random()*0.3);
+
+      const animation = el.animate([
+        { transform: `translate3d(0,0,0) rotate(0deg)`, opacity:1 },
+        { transform: `translate3d(${horizontal}px, ${endY}px,0) rotate(${rotateDelta}deg)`, opacity:0.6 }
+      ], {
+        duration: duration,
+        easing: 'cubic-bezier(.2,.7,.2,1)',
+        iterations: 1,
+        fill: 'forwards'
+      });
+
+      animation.onfinish = () => el.remove();
+    }
+
+    function burstConfetti(options = {}) {
+      const count = options.count || 60;
+      const spread = options.spread || window.innerWidth * 0.6;
+      const centerX = window.innerWidth * 0.5;
+      const topOffset = 10 + Math.random() * 80;
+      for (let i=0;i<count;i++){
+        const x = centerX - (spread/2) + Math.random()*spread;
+        const y = topOffset + Math.random()*30;
+        setTimeout(() => makeConfettiPiece(x,y), i * 8);
       }
     }
+
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    surpriseBtn.addEventListener('click', () => burstConfetti({count: 80}));
+    window.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'c') burstConfetti({count: 60}); });
+
+    window.addEventListener('resize', () => {});
   </script>
 </body>
 </html>
