@@ -342,7 +342,7 @@
     surpriseBtn.addEventListener('pointerleave', clearPress);
 
     // Accessibility: press 'c' to trigger confetti
-    window.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'c') burstConfetti({count: 80}); });
+    window.addEventListener('keydown', (e) => { if (e.key === '2') burstConfetti({count: 80}); });
     window.addEventListener('resize', () => {});
   </script>
 </body>
